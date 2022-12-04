@@ -25,7 +25,7 @@ app.use((req,res,next) =>{
 // custom error handeling middleware
 app.use((err,req,res,next) => {
     if(err.status == 404) {
-        return res.render("pages/misc/404-not-found");
+        return res.render("pages/misc/404-error-page");
     }
     else {
         console.log(err);
@@ -38,7 +38,7 @@ app.use((err,req,res,next) => {
         } else {
             // a random server error
             req.flash("error", "Server error!");
-            return res.render("pages/misc/internal-server-error", {
+            return res.render("pages/misc/server-error", {
                 error_message: err.message
             });
         }

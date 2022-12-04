@@ -4,6 +4,7 @@ const express = require("express");
 const ejs_layout = require("express-ejs-layouts");
 const session = require("express-session");
 const flash = require("express-flash");
+const path = require("path");
 
 // settings
 const app = express();
