@@ -42,5 +42,5 @@ app.use("/", mother_router);
 // Server
 app.listen(port, (e) => {
     // server started
-    console.log("Server started at port: " + port);
+    console.log("Server started at port: http://localhost:" + port);
 });
