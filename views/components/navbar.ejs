@@ -1,35 +1,39 @@
-<% 
-let nav_btn = "block p-2 mt-2 text-gray-700 dark:text-white rounded hover:bg-blue-500 hover:text-white"
- %> 
+<% let nav_btn="block p-2 mt-2 text-gray-700 dark:text-white rounded hover:bg-blue-500 hover:text-white" %>
 
-<nav class="text-gray-900 bg-white dark:bg-gray-900 dark:text-white sticky w-full z-20 top-0 left-0 border-b border-gray-300 dark:border-gray-600 sm:flex items-center justify-between py-4 p-3 drop-shadow">
+  <nav
+    class="text-gray-900 bg-white dark:bg-gray-900 dark:text-white sticky w-full z-20 top-0 left-0 border-b border-gray-300 dark:border-gray-600 sm:flex items-center justify-between py-4 p-3 drop-shadow">
     <div class="flex items-center justify-between">
-        <div class="font-semibold">
-          <a href="#">
-              <img src="/images/procot-inline-logo.png" class="h-7" alt="Procot Logo">
-          </a>
-        </div>
-        <div class="sm:hidden text-xl">
-          <button id="navbar-toggle" class="p-2 rounded cursor-pointer focus:outline-none" type="button" onclick="toggleMenu()">
-            <i class="fa fa-bars"></i>
-          </button>
-        </div>
+      <div class="font-semibold">
+        <a href="/">
+          <img src="/images/procot-inline-logo.png" class="h-7" alt="Procot Logo">
+        </a>
+      </div>
+      <div class="sm:hidden text-xl">
+        <button id="navbar-toggle" class="p-2 rounded cursor-pointer focus:outline-none" type="button"
+          onclick="toggleMenu()">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
     </div>
     <div id="navbar-menu" class="sm:flex sm:items-center pt-3 hidden">
-        <a class="<%= nav_btn %>" href="#">All Solutions</a>
-        <a class="<%= nav_btn %>" href="#">About</a>
+      <a class="<%= nav_btn %>" href="/">Home</a>
+      <a class="<%= nav_btn %>" href="/quiz">Quiz</a>
+      <a class="<%= nav_btn %>" href="/activity">Acitivity</a>
+      <a class="<%= nav_btn %>" href="/contents">Contents</a>
+      <a class="<%= nav_btn %>" href="/solutions">All Solutions</a>
+      <a class="<%= nav_btn %>" href="/about">About</a>
+      <a class="<%= nav_btn %>" href="/register">Be a Member</a>
     </div>
-</nav>
+  </nav>
 
-<script>
+  <script>
 
     function toggleMenu() {
 
-        const navbarMenu = document.querySelector('#navbar-menu')
-        navbarMenu.classList.toggle('hidden')
-        
+      const navbarMenu = document.querySelector('#navbar-menu')
+      navbarMenu.classList.toggle('hidden')
+
     }
 
 
-</script>
-  
+  </script>

@@ -6,11 +6,13 @@
   "scripts": {
     "start": "nodemon index",
     "test": "node index",
+    "build": "browserify ./index.js -o public/main.js",
     "build-css": "tailwind -i ./src/tailwind.css -o ./public/styles/tailwind.css -w"
   },
   "author": "Procot",
   "license": "ISC",
   "dependencies": {
+    "async_hooks": "^1.0.0",
     "axios": "^1.2.0",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
@@ -32,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/RIR360/procot-web/issues"
   },
-  "homepage": "https://github.com/RIR360/procot-web#readme"
+  "homepage": "https://github.com/RIR360/procot-web#readme",
+  "devDependencies": {
+    "browserify": "^17.0.0"
+  }
 }

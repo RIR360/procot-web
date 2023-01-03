@@ -1,8 +1,20 @@
+<link rel="stylesheet" href="/styles/github-dark.min.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>
+
+    hljs.highlightAll();
+
+</script>
+
+<% 
+let title_classes = "text-xl py-1 my-4 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white"
+ %> 
+
 <div>
-    <div class="sticky text-xl py-1 mb-3 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white ">
+    <div class="text-xl py-1 mb-3 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white">
         Search Lab Questions!
     </div>
-    <form action="/" method="GET" class="sticky w-full z-10 top-20 left-0">
+    <form action="/" method="GET">
         <label for="default-search"
             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
@@ -17,17 +29,77 @@
         </div>
     </form>
 
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis consequatur molestiae minus vitae mollitia harum. Perspiciatis voluptatum architecto ipsa fugit quasi maxime necessitatibus exercitationem. Itaque, officiis hic. Iusto, quia excepturi.
-    <br>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis consequatur molestiae minus vitae mollitia harum. Perspiciatis voluptatum architecto ipsa fugit quasi maxime necessitatibus exercitationem. Itaque, officiis hic. Iusto, quia excepturi.
-    <br>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis consequatur molestiae minus vitae mollitia harum. Perspiciatis voluptatum architecto ipsa fugit quasi maxime necessitatibus exercitationem. Itaque, officiis hic. Iusto, quia excepturi.
-    <br>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis consequatur molestiae minus vitae mollitia harum. Perspiciatis voluptatum architecto ipsa fugit quasi maxime necessitatibus exercitationem. Itaque, officiis hic. Iusto, quia excepturi.
-    <br>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis consequatur molestiae minus vitae mollitia harum. Perspiciatis voluptatum architecto ipsa fugit quasi maxime necessitatibus exercitationem. Itaque, officiis hic. Iusto, quia excepturi.
-    <br>
+    <!-- <div class="<%= title_classes %>">
+        Write a program to implement first pattern matching algorithm.
+    </div> -->
 
+    <div class="<%= title_classes %>">
+        Algorithm
+    </div>
+
+    <pre class="p-4 rounded overflow-auto bg-gray-900 text-white">
+1. [Initialize] Set i := 0, a := pattern length, b := text length
+2. Repeat 3 to 11 until i <= b - a:
+3.  Set j := 0
+4.  Repeat 5 to 7 until j < a:
+5.   If text[i + j] != pat[j] then:
+6.    goto step 8
+7.   j++
+8.  If j == a then:
+9.   Write "Pattern found at position  (i + 1)"
+10.  go to step 13
+11. i++
+12. Write "Pattern not found"
+13. [Exit]
+    </pre>
+
+    <div class="<%= title_classes %>">
+        Source Code
+    </div>
+
+    <pre class="overflow-auto p-0">
+    <code class="language-cpp rounded -mt-5">
+#include  &lt;stdio.h&gt; 
+#include  &lt;string.h&gt;
+#define SIZE 1000
+
+int main() 
+{ 
+    char text[SIZE],pat[SIZE];
+    int a = 0, b = 0, i, j;
+    
+    printf("Enter the string : ");
+    fgets(text, SIZE, stdin);
+    printf("Enter the pattern to find : ");
+    fgets(pat, SIZE, stdin);
+    
+    while(pat[a] != '\n') a++;
+    while(text[b] != '\n') b++;
+    
+    for (i = 0; i &lt;= b - a; i++) {
+    
+        for (j = 0; j &lt; a; j++)
+            if (text[i + j] != pat[j]) 
+                break; 
+    
+        if (j == a) {
+            printf("Pattern found at position %d \n", i+1);
+            return 0;
+        }
+    } 
+    printf("Pattern not found\n");
+    return 0;
+}
+    </code></pre>
+
+    <div class="<%= title_classes %>">
+        Output
+    </div>
+    <pre class="p-4 overflow-auto bg-gray-900 text-white rounded">
+Enter the string : hello
+Enter the pattern to find : ll
+Pattern found at position 3
+    </pre>
 
 
 </div>
