@@ -1,14 +1,37 @@
 <link rel="stylesheet" href="/styles/github-dark.min.css">
 <script src="/scripts/highlight.min.js"></script>
+
+<% 
+let empty_message = "No Contribution yet. Be the first to contribute!"; 
+let title_classes = "text-xl py-1 my-4 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white";
+let contributor_title_cls = "text-blue-500";
+%>
+
+
 <script>
 
     hljs.highlightAll();
 
-</script>
+    window.onload = (e) => {
 
-<% 
-let title_classes = "text-xl py-1 my-4 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white"
- %> 
+        // get elements
+        const output_box = document.getElementById("output-box");
+        const algorithm_box = document.getElementById("algorithm-box");
+        const code_box = document.getElementById("code-box");
+
+        // get contents from the backend
+        let algorithm_content = `<%= content.algorithm != "" ? content.algorithm : empty_message %>`;
+        let code_content = `<%= content.code != "" ? content.code : empty_message %>`;
+        let output_content = `<%= content.output != "" ? content.output : empty_message %>`;
+
+        // render contents
+        algorithm_box.innerText = algorithm_content;
+        code_box.innerText = code_content;
+        output_box.innerText = output_content;
+
+    }
+
+</script>
 
 <div>
     <div class="text-xl py-1 mb-3 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white">
@@ -35,71 +58,38 @@ let title_classes = "text-xl py-1 my-4 border-b border-blue-200 dark:border-gray
 
     <div class="<%= title_classes %>">
         Algorithm
+        <small>
+            <a href="#" class="<%= contributor_title_cls %>">
+                <%= contributor.algorithm != "" ? "- ✍ " + contributor.algorithm : "" %>
+            </a>
+        </small>
     </div>
 
-    <pre class="p-4 rounded overflow-auto bg-gray-900 text-white">
-1. [Initialize] Set i := 0, a := pattern length, b := text length
-2. Repeat 3 to 11 until i <= b - a:
-3.  Set j := 0
-4.  Repeat 5 to 7 until j < a:
-5.   If text[i + j] != pat[j] then:
-6.    goto step 8
-7.   j++
-8.  If j == a then:
-9.   Write "Pattern found at position  (i + 1)"
-10.  go to step 13
-11. i++
-12. Write "Pattern not found"
-13. [Exit]
+    <pre id="algorithm-box" class="p-4 overflow-auto rounded bg-gray-900 text-gray-200"><div role="status"><i class="fa fa-circle-notch w-8 h-8 mr-2 text-gray-400 animate-spin dark:text-gray-600"></i><span class="sr-only">Loading...</span></div>
     </pre>
 
     <div class="<%= title_classes %>">
         Source Code
+        <small>
+            <a href="#" class="<%= contributor_title_cls %>">
+                <%= contributor.code != "" ? "- ✍ " + contributor.code : "" %>
+            </a>
+        </small>
     </div>
 
-    <pre class="overflow-auto p-0">
-    <code class="language-cpp rounded -mt-5">
-#include  &lt;stdio.h&gt; 
-#include  &lt;string.h&gt;
-#define SIZE 1000
-
-int main() 
-{ 
-    char text[SIZE],pat[SIZE];
-    int a = 0, b = 0, i, j;
-    
-    printf("Enter the string : ");
-    fgets(text, SIZE, stdin);
-    printf("Enter the pattern to find : ");
-    fgets(pat, SIZE, stdin);
-    
-    while(pat[a] != '\n') a++;
-    while(text[b] != '\n') b++;
-    
-    for (i = 0; i &lt;= b - a; i++) {
-    
-        for (j = 0; j &lt; a; j++)
-            if (text[i + j] != pat[j]) 
-                break; 
-    
-        if (j == a) {
-            printf("Pattern found at position %d \n", i+1);
-            return 0;
-        }
-    } 
-    printf("Pattern not found\n");
-    return 0;
-}
+    <pre class="overflow-auto rounded bg-gray-900 text-gray-200"><code id="code-box" class="language-cpp rounded"><div role="status"><i class="fa fa-circle-notch w-8 h-8 mr-2 text-gray-400 animate-spin dark:text-gray-600"></i><span class="sr-only">Loading...</span></div>
     </code></pre>
 
     <div class="<%= title_classes %>">
         Output
+        <small>
+            <a href="#" class="<%= contributor_title_cls %>">
+                <%= contributor.output != "" ? "- ✍ " + contributor.output : "" %>
+            </a>
+        </small>
     </div>
-    <pre class="p-4 overflow-auto bg-gray-900 text-white rounded">
-Enter the string : hello
-Enter the pattern to find : ll
-Pattern found at position 3
+    
+    <pre id="output-box" class="p-4 overflow-auto bg-gray-900 text-green-500 rounded"><div role="status"><i class="fa fa-circle-notch w-8 h-8 mr-2 text-gray-400 animate-spin dark:text-gray-600"></i><span class="sr-only">Loading...</span></div>
     </pre>
-
 
 </div>
