@@ -10,65 +10,22 @@ const app = express.Router();
 // home page
 app.get("/", (req, res, next) => {
 
-    let algorithm = `
-    1. [Initialize] Set i := 0, a := pattern length, b := text length
-    2. Repeat 3 to 11 until i <= b - a:
-    3.  Set j := 0
-    4.  Repeat 5 to 7 until j < a:
-    5.   If text[i + j] != pat[j] then:
-    6.    goto step 8
-    7.   j++
-    8.  If j == a then:
-    9.   Write "Pattern found at position  (i + 1)"
-    10.  go to step 13
-    11. i++
-    12. Write "Pattern not found"
-    13. [Exit]
-    `;
+    let algorithm = `[Initialize] Set i := 0, a := pattern length, b := text length\nRepeat 3 to 11 until i <= b - a:\nSet j := 0\nRepeat 5 to 7 until j < a:\nIf text[i + j] != pat[j] then:\ngoto step 8\nj++\nIf j == a then:\nWrite \"Pattern found at position  (i + 1)\"\nGo to step 13\ni++\nWrite \"Pattern not found\"\n[Exit]`;
 
-    let code = `
-    #include  <stdio.h>
-    #include  <string.h>
-    #define SIZE 1000
-    
-    int main() 
-    { 
-        char text[SIZE],pat[SIZE];
-        int a = 0, b = 0, i, j;
-        
-        printf("Enter the string : ");
-        fgets(text, SIZE, stdin);
-        printf("Enter the pattern to find : ");
-        fgets(pat, SIZE, stdin);
-        
-        while(pat[a] != '\n') a++;
-        while(text[b] != '\n') b++;
-        
-        for (i = 0; i &lt;= b - a; i++) {
-        
-            for (j = 0; j &lt; a; j++)
-                if (text[i + j] != pat[j]) 
-                    break; 
-        
-            if (j == a) {
-                printf("Pattern found at position %d \n", i+1);
-                return 0;
-            }
-        } 
-        printf("Pattern not found\n");
-        return 0;
-    }`;
+    let code = `#include  <stdio.h>\n#include  <string.h>\n#define SIZE 1000\n\nint main() \n{ \n    char text[SIZE],pat[SIZE];\n    int a = 0, b = 0, i, j;\n    \n    printf(\"Enter the string : \");\n    fgets(text, SIZE, stdin);\n    printf(\"Enter the pattern to find : \");\n    fgets(pat, SIZE, stdin);\n    \n    while(pat[a] != '\\n') a++;\n    while(text[b] != '\\n') b++;\n    \n    for (i = 0; i &lt;= b - a; i++) {\n    \n        for (j = 0; j &lt; a; j++)\n            if (text[i + j] != pat[j]) \n              break; \n    \n        if (j == a) {\n            printf(\"Pattern found at position %d \\n\", i+1);\n            return 0;\n        }\n    } \n    printf(\"Pattern not found\\n\");\n    return 0;\n}`;
+
 
     let output = "Enter the string : hello\nEnter the pattern to find : ll\nPattern found at position 3";
 
     res.render("pages/home", {
         content: {
-            algorithm: "",
-            code: "",
+            title: "Write a program to implement first pattern matching algorithm.",
+            algorithm: algorithm,
+            code: code,
             output: output
         },
         contributor: {
-            algorithm: "",
+            algorithm: "Rizvy",
             code: "Rizvy",
             output: "Rizvy"
         }

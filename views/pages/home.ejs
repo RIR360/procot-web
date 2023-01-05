@@ -2,10 +2,26 @@
 <script src="/scripts/highlight.min.js"></script>
 
 <% 
-let empty_message = "No Contribution yet! Be the first to contribute!"; 
-let title_classes = "text-xl py-1 my-4 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white";
+let empty_message = "No Contribution yet!\nBe the first to contribute!"; 
+let title_classes = "flex justify-between text-xl py-1 my-4 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white";
 let contributor_title_cls = "text-blue-500";
 %>
+
+<style>
+    .algo_list {
+        list-style-type: none;
+        counter-reset: elementcounter;
+    }
+
+    .algo_list > li:before {
+        color: rgb(96 165 250);
+        content: "Step-" counter(elementcounter) ": ";
+        counter-increment: elementcounter;
+    }
+    .pre-font {
+        font-family: Consolas,monospace
+    }
+</style>
 
 
 <script>
@@ -14,20 +30,7 @@ let contributor_title_cls = "text-blue-500";
 
     window.onload = (e) => {
 
-        // get elements
-        const output_box = document.getElementById("output-box");
-        const algorithm_box = document.getElementById("algorithm-box");
-        const code_box = document.getElementById("code-box");
-
-        // get contents from the backend
-        let algorithm_content = `<%= content.algorithm != "" ? content.algorithm : empty_message %>`;
-        let code_content = `<%= content.code != "" ? content.code : empty_message %>`;
-        let output_content = `<%= content.output != "" ? content.output : empty_message %>`;
-
-        // render contents
-        algorithm_box.innerText = algorithm_content;
-        code_box.innerText = code_content;
-        output_box.innerText = output_content;
+        // do something
 
     }
 
@@ -52,43 +55,78 @@ let contributor_title_cls = "text-blue-500";
         </div>
     </form>
 
-    <!-- <div class="<%= title_classes %>">
-        Write a program to implement first pattern matching algorithm.
-    </div> -->
+    <% if (content.title != "") { %>
+        <div class="py-2 text-xl">
+            <strong>Question: </strong>
+            <%= content.title %>
+        </div>
+    <% } %>
 
     <div class="<%= title_classes %>">
-        Algorithm
-        <small>
-            <a href="#" class="<%= contributor_title_cls %>">
-                <%= contributor.algorithm != "" ? "- ✍ " + contributor.algorithm : "" %>
-            </a>
-        </small>
+        <div>
+            Algorithm
+            <small>
+                <a href="#" class="<%= contributor_title_cls %>">
+                    <%= contributor.algorithm != "" ? "- ✍ " + contributor.algorithm : "" %>
+                </a>
+            </small>
+        </div>
+        <div>
+            <button class="p-2"><i class="fa fa-file-code"></i></button>
+            <button class="p-2"><i class="fa fa-copy"></i></button>
+        </div>
     </div>
 
-    <pre id="algorithm-box" class="p-4 overflow-auto rounded bg-gray-900 text-gray-200"><div role="status"><i class="fa fa-circle-notch w-8 h-8 mr-2 text-gray-400 animate-spin dark:text-gray-600"></i><span class="sr-only">Loading...</span></div>
-    </pre>
+    <% let algo_lines = content.algorithm.split("\n") %>
+    
+    <div class="p-4 pre-font whitespace-nowrap overflow-auto rounded bg-gray-900 text-gray-200">
+        <% if (content.algorithm != "") { %>
+            <ol class="algo_list">
 
-    <div class="<%= title_classes %>">
-        Source Code
-        <small>
-            <a href="#" class="<%= contributor_title_cls %>">
-                <%= contributor.code != "" ? "- ✍ " + contributor.code : "" %>
-            </a>
-        </small>
+                <% algo_lines.forEach(line => { %>
+
+                    <li><%= line %></li>
+
+                <% }) %>
+
+            </ol>
+        <% } else { %>
+            <%= empty_message %>
+        <% } %> 
     </div>
 
-    <pre class="overflow-auto rounded bg-gray-900 text-gray-200"><code id="code-box" class="language-cpp rounded"><div role="status"><span class="p-4">Loading...</span></div></code></pre>
+    <div class="<%= title_classes %>">
+        <div>
+            Source Code
+            <small>
+                <a href="#" class="<%= contributor_title_cls %>">
+                    <%= contributor.code != "" ? "- ✍ " + contributor.code : "" %>
+                </a>
+            </small>
+        </div>
+        <div>
+            <button class="p-2"><i class="fa fa-file-code"></i></button>
+            <button class="p-2"><i class="fa fa-copy"></i></button>
+        </div>
+    </div>
+
+    <pre class="overflow-auto rounded bg-gray-900 text-gray-200"><code id="code-box" class="language-cpp rounded"><%= content.code != "" ? content.code : empty_message %></code></pre>
 
     <div class="<%= title_classes %>">
-        Output
-        <small>
-            <a href="#" class="<%= contributor_title_cls %>">
-                <%= contributor.output != "" ? "- ✍ " + contributor.output : "" %>
-            </a>
-        </small>
+        <div>
+            Output
+            <small>
+                <a href="#" class="<%= contributor_title_cls %>">
+                    <%= contributor.output != "" ? "- ✍ " + contributor.output : "" %>
+                </a>
+            </small>
+        </div>
+        <div>
+            <button class="p-2"><i class="fa fa-file-code"></i></button>
+            <button class="p-2"><i class="fa fa-copy"></i></button>
+        </div>
     </div>
     
-    <pre id="output-box" class="p-4 overflow-auto bg-gray-900 text-green-500 rounded"><div role="status"><i class="fa fa-circle-notch w-8 h-8 mr-2 text-gray-400 animate-spin dark:text-gray-600"></i><span class="sr-only">Loading...</span></div>
-    </pre>
+    <pre class="p-4 overflow-auto bg-gray-900 text-blue-400 rounded"><%= content.output != "" ? content.output : empty_message %></pre>
 
 </div>
