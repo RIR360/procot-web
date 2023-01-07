@@ -1,0 +1,24 @@
+<!-- javascript toast  -->
+<div id="toast" class="hidden fixed bottom-0 z-50 p-5 w-full transition-all opacity-90">
+    <div class="p-3 rounded-lg shadow-xl bg-slate-100 text-gray-900 dark:text-white dark:bg-gray-800">
+        <i class="fa fa-circle-info"></i>
+        <span class="content"></span>
+    </div>
+</div>
+
+<script>
+
+    function showToast(content) {
+
+        let toast = document.querySelector('#toast');
+        toast.classList.remove('hidden');
+
+        toast.querySelector("div > .content").innerText = content;
+
+        setTimeout(function () {
+            toast.classList.add('hidden');
+        }, 3000);
+
+    }
+
+</script>
