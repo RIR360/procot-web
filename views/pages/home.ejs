@@ -1,195 +1,48 @@
-<link rel="stylesheet" href="/styles/github-dark.min.css">
-<script src="/scripts/highlight.min.js"></script>
 
 <% 
-let empty_message = "No Contribution yet!\nBe the first to contribute!"; 
-let title_classes = "flex justify-between text-xl py-1 my-4 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white";
-let contributor_title_cls = "text-blue-500";
-%>
+let theme_cta = 
+`text-blue-500 border border-blue-500 rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 
+dark:border-blue-500 dark:focus:ring-blue-800
+hover:text-white hover:bg-blue-800
+focus:ring-4 focus:outline-none focus:ring-blue-300`;
+%> 
 
-<style>
-
-    .algo_list {
-        list-style-type: none;
-        counter-reset: elementcounter;
-    }
-
-    .algo_list > li:before {
-        color: rgb(96 165 250);
-        content: "Step-" counter(elementcounter) ": ";
-        counter-increment: elementcounter;
-    }
-    .pre-font {
-        font-family: Consolas, monospace;
-    }
-
-</style>
-
-
-<script>
-
-    hljs.highlightAll();
-
-    window.onload = (e) => {
-
-        // do something
-
-    }
-
-</script>
-
-<!-- <div class="p-4 my-4">
-    <img src="/gifs/procot animation.gif" alt="" height="300" class="rounded-full">
-</div> -->
-
-<div>
-
-    <div class="text-xl py-1 mb-3 border-b border-blue-200 dark:border-gray-500 font-medium text-gray-500 dark:text-white">
-        Search Lab Questions!
-    </div>
-    <form action="/" method="GET">
-        <label for="default-search"
-            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-        <div class="relative">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <i class="fa fa-search text-gray-300"></i>
-            </div>
-            <input type="search" id="default-search"
-                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search Code Solutions..." required>
-            <button type="submit"
-                class="text-white absolute right-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-        </div>
-    </form>
-
-    <% if (content.title != "") { %>
-        <div class="py-2 text-xl">
-            <strong>Question: </strong>
-            <%= content.title %>
-        </div>
-    <% } %>
-
-    <div class="<%= title_classes %>">
-        <div>
-            Algorithm
-            <small>
-                <a href="#" class="<%= contributor_title_cls %>">
-                    <%= contributor.algorithm != "" ? "- ✍ " + contributor.algorithm : "" %>
-                </a>
-            </small>
-        </div>
-        <div>
-            <button class="p-2 transition duration-500 ease-in-out" onclick="
-                toggle('#algo-container', 'whitespace-nowrap'); 
-                toggle(this, 'rotate-180')
-            "><i class="fa fa-chevron-left"></i></button>
-            <button class="p-2" onclick="copy('#algo-container')"><i class="fa fa-copy"></i></button>
+<div class = 
+"flex justify-center items-center rounded-lg
+bg-white
+dark:bg-gray-900">
+    <div class="py-12 p-4 sm:px-12">
+        <div class="text-center sm:text-left">
+            <h2 class=
+            "font-semibold text-4xl mb-4 font-arial">Hey Programmers!</h2>
+            <h4 class="grid sm:grid-cols-2 gap-4">
+                <div class="text-sm mb-6">
+                    PROCOT, is a student-run programming club at the University College of Technology. The club aims to provide a community for students interested in computer programming and technology to come together and learn from one another.
+                    <a class="text-blue-500 underline" href="/about">Read more!</a>
+                </div>
+            </h4>
+            <a href="#" type="button" class="<%= theme_cta %>">
+                Join Procot
+            </a>
         </div>
     </div>
-
-    <% let algo_lines = content.algorithm.split("\n") %>
-    
-    <div id="algo-container" class="p-4 pre-font whitespace-nowrap overflow-auto rounded bg-gray-900 text-gray-200">
-        <% if (content.algorithm != "") { %>
-            <ol class="algo_list">
-
-                <% algo_lines.forEach(line => { %>
-
-                    <li><%= line %></li>
-
-                <% }) %>
-
-            </ol>
-        <% } else { %>
-            <%= empty_message %>
-        <% } %> 
-    </div>
-
-    <div class="<%= title_classes %>">
-        <div>
-            Source Code
-            <small>
-                <a href="#" class="<%= contributor_title_cls %>">
-                    <%= contributor.code != "" ? "- ✍ " + contributor.code : "" %>
-                </a>
-            </small>
-        </div>
-        <div>
-            <button class="p-2 transition duration-500 ease-in-out" onclick="
-                toggle('#code-container', 'whitespace-pre-wrap');
-                toggle(this, 'rotate-180')
-            "><i class="fa fa-chevron-left"></i></button>
-            <button class="p-2" onclick="copy('#code-container')"><i class="fa fa-copy"></i></button>
-        </div>
-    </div>
-
-    <pre id="code-container" class="rounded bg-gray-900 text-gray-200"><code class="language-cpp rounded"><%= content.code != "" ? content.code : empty_message %></code></pre>
-
-    <div class="<%= title_classes %>">
-        <div>
-            Output
-            <small>
-                <a href="#" class="<%= contributor_title_cls %>">
-                    <%= contributor.output != "" ? "- ✍ " + contributor.output : "" %>
-                </a>
-            </small>
-        </div>
-        <div>
-            <button class="p-2 transition duration-500 ease-in-out" onclick="
-                toggle('#output-container', 'whitespace-pre-wrap'); 
-                toggle(this, 'rotate-180')
-            "><i class="fa fa-chevron-left"></i></button>
-            <button class="p-2" onclick="copy('#output-container')"><i class="fa fa-copy"></i></button>
-        </div>
-    </div>
-    
-    <pre id="output-container" class="p-4 overflow-auto bg-gray-900 text-blue-400 rounded"><%= content.output != "" ? content.output : empty_message %></pre>
-
 </div>
 
-
-<script>
-    
-    function toggle(element, cls) {
-
-        if (typeof element != 'object') {
-            
-            // element is not an Node element so it's a selector
-            element = document.querySelector(element);
-
-        }
-        
-        element.classList.toggle(cls);
-
-    }
-
-    function copy(element) {
-
-        if (typeof element != 'object') {
-            
-            // element is not an Node element so it's a selector
-            element = document.querySelector(element);
-
-        }
-        
-        // creating a temporary textarea to copy the text from that
-        let text = element.innerText;
-        let textarea = document.createElement('textarea');
-
-        textarea.value = text;
-        document.body.appendChild(textarea);
-
-        textarea.select();
-        document.execCommand('copy');
-
-        // run command to copy the selected textarea
-        document.execCommand('copy');
-
-        document.body.removeChild(textarea);
-
-        // alert the user now
-        showToast("Copied Successfully!")
-
-    }
-
-</script>
+<div class = 
+"flex justify-center items-center rounded-lg
+bg-white
+dark:bg-gray-900">
+    <div class="py-12 p-4 sm:px-12">
+        <div class="text-center sm:text-left">
+            <h2 class="font-semibold text-4xl mb-4 font-arial">Project Showcase!</h2>
+            <h4 class="grid sm:grid-cols-2">
+                <div class="text-sm mb-6">
+                    PROCOT Project showcase where best projects created by the members are available to get inspiration from.
+                </div>
+            </h4>
+            <a href="#" type="button" class="<%= theme_cta %>">
+                Got to Showcase
+            </a>
+        </div>
+    </div>
+</div>
