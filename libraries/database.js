@@ -1,42 +1,35 @@
 require("dotenv").config();
-const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
+
+
+// Connection URI
+const client = new MongoClient(process.env.DATABASE_URI);
+const database = client.db(process.env.DATABASE_NAME);
+
 
 function connectDatabase(error) {
 
-    mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true }, (err) => {
-        
-        if (err) {
+    client.connect()
+    .then(e => {
 
-            // error found
-            error(err);
+        // empty means no error found
+        error()
 
-        } else {
+    })
+    .catch(err => {
 
-            // empty call means no error
-            error();
-
-        }
-
+        error(err)
     });
     
 }
 
 
-// schemas
-const Members = mongoose.model('members', new mongoose.Schema({
-    name: String,
-    batch: Number
-}));
-
-
-
 
 module.exports = {
 
+    // Database Client
+    database,
     // functions
-    connectDatabase,
-
-    //schemas
-    Members
+    connectDatabase
 
 };

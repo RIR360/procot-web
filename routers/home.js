@@ -2,7 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const {
-    Members
+    database
 } = require("../libraries/database");
 const app = express.Router();
 
@@ -10,15 +10,19 @@ const app = express.Router();
 // home page
 app.get("/", (req, res, next) => {
 
-    Members.create(
-        { 
-            name: 'Rizvy', 
-            batch: 4,
-            roll: 29
-        }
-    )
-    .then((person) => console.log(person))
-    .catch((error) => console.log(error));
+    database.collection("members").insertOne({
+        name: "Moon", batch: 4, roll: 29
+    })
+    .then(result => {
+
+        console.log("> Member Inserted!");
+
+    })
+    .catch(err => {
+
+        console.log("Home.js: ", err.message);
+
+    })
 
     res.render("pages/home", {
 
