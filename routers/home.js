@@ -2,13 +2,32 @@
 require("dotenv").config();
 const express = require("express");
 const {
-    database
+    Members
 } = require("../libraries/database");
 const app = express.Router();
 
 
 // home page
 app.get("/", (req, res, next) => {
+
+    Members.create(
+        { 
+            name: 'Rizvy', 
+            batch: 4,
+            roll: 29
+        }
+    )
+    .then((person) => console.log(person))
+    .catch((error) => console.log(error));
+
+    res.render("pages/home", {
+
+        title: "Home"
+
+    })
+
+})
+app.get("/lab/solution", (req, res, next) => {
 
     let algorithm = `[Initialize] Set i := 0, a := pattern length, b := text length\nRepeat 3 to 11 until i <= b - a:\nSet j := 0\nRepeat 5 to 7 until j < a:\nIf text[i + j] != pat[j] then:\ngoto step 8\nj++\nIf j == a then:\nWrite \"Pattern found at position  (i + 1)\"\nGo to step 13\ni++\nWrite \"Pattern not found\"\n[Exit]`;
 
@@ -17,7 +36,9 @@ app.get("/", (req, res, next) => {
 
     let output = "Enter the string : hello\nEnter the pattern to find : ll\nPattern found at position 3";
 
-    res.render("pages/home", {
+    res.render("pages/lab-solution", {
+
+        title: "Solution",
         content: {
             title: "Write a program to implement first pattern matching algorithm.",
             algorithm: algorithm,
@@ -29,6 +50,7 @@ app.get("/", (req, res, next) => {
             code: "Rizvy",
             output: "Rizvy"
         }
+
     })
 
 });
