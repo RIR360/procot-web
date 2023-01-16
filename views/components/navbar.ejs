@@ -18,11 +18,14 @@ active:bg-blue-500 active:text-white`;
         <img src="/images/procot-inline-logo.png" class="h-7" alt="Procot Logo">
       </a>
     </div>
-    <div class="sm:hidden text-xl">
-      <button id="navbar-toggle" class="p-2 rounded cursor-pointer focus:outline-none" type="button"
+    <div class="text-xl">
+      <button id="navbar-toggle" class="sm:hidden p-2 rounded-full cursor-pointer focus:outline-none" type="button"
         onclick="toggleMenu()">
         <i class="fa fa-bars"></i>
       </button>
+      <!-- <a href="/me" class="p-2 rounded-full cursor-pointer focus:outline-none bg-slate-800">
+        <i class="fa fa-user"></i>
+      </a> -->
     </div>
   </div>
   <div id="navbar-menu" class="sm:flex sm:items-center pt-3 sm:pt-0 hidden transition-opacity">
@@ -32,7 +35,7 @@ active:bg-blue-500 active:text-white`;
     <a class="<%= nav_btn %>" href="/activity">Events</a>
     <a class="<%= nav_btn %>" href="/contents">Contents</a>
     <a class="<%= nav_btn %>" href="/about">About</a>
-    <a class="<%= nav_btn %>" href="/register">Join</a>
+    <a class="<%= nav_btn %>" href="/auth/register">Join</a>
   </div>
 </nav>
 

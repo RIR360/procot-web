@@ -1,0 +1,94 @@
+
+<%
+
+const theme = {
+
+cta_button: 
+`text-blue-500 border border-blue-500 rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 
+dark:border-blue-500 dark:focus:ring-blue-800
+hover:text-white hover:bg-blue-800
+focus:ring-4 focus:outline-none focus:ring-blue-300`,
+main_section: 
+`rounded-lg bg-white dark:bg-gray-800`,
+section_title:
+`font-semibold text-2xl mb-2 font-arial
+py-2 border-b-2 border-blue-600`,
+more_button: 
+`inline-block p-1 text-blue-500 rounded-log
+hover:text-gray-600 hover:bg-gray-100 
+dark:hover:bg-gray-700 dark:hover:text-gray-300`,
+small_card:
+`block max-w-sm p-2 bg-white border border-gray-200 rounded-lg
+hover:bg-gray-100 shadow-sm
+dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-700`
+
+}
+
+%>
+
+<!-- new events -->
+<div class = "<%= theme.main_section %>">
+    <div class="p-4 sm:px-12">
+        <h2 class="<%= theme.section_title %>">Events</h2>
+        <div class="grid sm:grid-cols-2 gap-4 py-4">
+            <a href="#" class="<%= theme.small_card %>">
+                <h5 class="text-xl font-bold">
+                    Procot On Campus Seminar
+                </h5>
+                <div>
+                    <i class="fa fa-clock"></i>
+                    1/12/2023
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non aut ad molestiae. Consequuntur sequi ipsum...</p>
+            </a>
+            <a href="#" class="<%= theme.small_card %>">
+                <h5 class="text-xl font-bold">
+                    Procot Registration is On!
+                </h5>
+                <div>
+                    <i class="fa fa-clock"></i>
+                    1/12/2023
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non aut ad molestiae. Consequuntur sequi ipsum...</p>
+            </a>
+        </div>
+        <a href="/events"class="<%= theme.more_button %>">
+            See More
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</div>
+
+
+<!-- new problems -->
+<div class = "<%= theme.main_section %>">
+    <div class="p-4 sm:px-12">
+        <h2 class="<%= theme.section_title %>">New Additions</h2>
+        <div class="grid sm:grid-cols-2 gap-4 py-4">
+            <a href="#" class="<%= theme.small_card %>">
+                <h5 class="text-xl font-bold">
+                    Problem 01
+                </h5>
+                <div>
+                    <i class="fa fa-code"></i>
+                    Medium
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non aut ad molestiae. Consequuntur sequi ipsum...</p>
+            </a>
+            <a href="#" class="<%= theme.small_card %>">
+                <h5 class="text-xl font-bold">
+                    Problem 02
+                </h5>
+                <div>
+                    <i class="fa fa-code"></i>
+                    Medium
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non aut ad molestiae. Consequuntur sequi ipsum...</p>
+            </a>
+        </div>
+        <a href="/events"class="<%= theme.more_button %>">
+            See More
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</div>

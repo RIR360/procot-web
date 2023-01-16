@@ -1,7 +1,6 @@
 require("dotenv").config();
 const { MongoClient } = require('mongodb');
 
-
 // Connection URI
 const client = new MongoClient(process.env.DATABASE_URI);
 const database = client.db(process.env.DATABASE_NAME);
@@ -20,7 +19,7 @@ function connectDatabase(error) {
 
         error(err)
     });
-    
+
 }
 
 

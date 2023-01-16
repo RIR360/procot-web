@@ -1,48 +1,80 @@
+<%
 
-<% 
-let theme_cta = 
+const theme = {
+
+cta_button: 
 `text-blue-500 border border-blue-500 rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 
 dark:border-blue-500 dark:focus:ring-blue-800
 hover:text-white hover:bg-blue-800
-focus:ring-4 focus:outline-none focus:ring-blue-300`;
-%> 
+focus:ring-4 focus:outline-none focus:ring-blue-300`,
+main_section: 
+`rounded-lg bg-white dark:bg-gray-800`
 
-<div class = 
-"flex justify-center items-center rounded-lg
-bg-white
-dark:bg-gray-900">
-    <div class="py-12 p-4 sm:px-12">
-        <div class="text-center sm:text-left">
-            <h2 class=
-            "font-semibold text-4xl mb-4 font-arial">Hey Programmers!</h2>
-            <h4 class="grid sm:grid-cols-2 gap-4">
-                <div class="text-sm mb-6">
-                    PROCOT, is a student-run programming club at the University College of Technology. The club aims to provide a community for students interested in computer programming and technology to come together and learn from one another.
-                    <a class="text-blue-500 underline" href="/about">Read more!</a>
-                </div>
-            </h4>
-            <a href="#" type="button" class="<%= theme_cta %>">
-                Join Procot
-            </a>
+}
+
+%>
+
+<!-- Join procot section -->
+<div class = "<%= theme.main_section %>">
+    <div class="text-center sm:text-left py-12 p-4 sm:px-12">
+        <h2 class=
+        "font-semibold text-4xl mb-4 font-arial">Hey Programmers!</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+            <div class="text-sm mb-6">
+                PROCOT, is a student-run programming club at the University College of Technology. The club aims to provide a community for students interested in computer programming and technology to come together and learn from one another.
+                <a class="text-blue-500 underline" href="/about">Read more!</a>
+            </div>
         </div>
+        <a href="/join" type="button" class="<%= theme.cta_button %>">
+            Join Procot Now!
+        </a>
     </div>
 </div>
 
-<div class = 
-"flex justify-center items-center rounded-lg
-bg-white
-dark:bg-gray-900">
-    <div class="py-12 p-4 sm:px-12">
-        <div class="text-center sm:text-left">
-            <h2 class="font-semibold text-4xl mb-4 font-arial">Project Showcase!</h2>
-            <h4 class="grid sm:grid-cols-2">
-                <div class="text-sm mb-6">
-                    PROCOT Project showcase where best projects created by the members are available to get inspiration from.
-                </div>
-            </h4>
-            <a href="#" type="button" class="<%= theme_cta %>">
-                Got to Showcase
-            </a>
+<!-- Find programming problems -->
+<div class = "<%= theme.main_section %>">
+    <div class="text-center sm:text-left py-12 p-4 sm:px-12">
+        <h2 class=
+        "font-semibold text-4xl mb-4 font-arial">Solve Programming Problems!</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+            <div class="text-sm mb-6">
+                There are a list of programming problems for you to solve and brainstorm depending on your learning level. These curated by the admins from various sources or written by them.
+            </div>
         </div>
+        <a href="/problems" type="button" class="<%= theme.cta_button %>">
+            Solve A Problem
+        </a>
+    </div>
+</div>
+
+<!-- Take interesting quizzes -->
+<div class = "<%= theme.main_section %>">
+    <div class="text-center sm:text-left py-12 p-4 sm:px-12">
+        <h2 class=
+        "font-semibold text-4xl mb-4 font-arial">Take Interesting Quizzes!</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+            <div class="text-sm mb-6">
+                Quizzes can be used as a brief assessment in education and similar fields to measure growth in knowledge. PROCOT provides you a handful of quizzes to take that will sharpen your knowledge in specific category.
+            </div>
+        </div>
+        <a href="/quizzes" type="button" class="<%= theme.cta_button %>">
+            Take A Quiz
+        </a>
+    </div>
+</div>
+
+<!-- Project showcase -->
+<div class = "<%= theme.main_section %>">
+    <div class="text-center sm:text-left py-12 p-4 sm:px-12">
+        <h2 class=
+        "font-semibold text-4xl mb-4 font-arial">Project Showcase!</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+            <div class="text-sm mb-6">
+                PROCOT Project showcase where best projects created by the members are available to get inspiration from.
+            </div>
+        </div>
+        <a href="/projects/showcase" type="button" class="<%= theme.cta_button %>">
+            Go To Showcase
+        </a>
     </div>
 </div>

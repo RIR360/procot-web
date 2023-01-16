@@ -9,10 +9,15 @@ const path = require("path");
 const {
     connectDatabase
 } = require("./libraries/database");
+const {
+    format,
+    access
+} = require("./libraries/globals");
 
 // settings
 const app = express();
 const port = process.env.PORT || 3001;
+
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
@@ -31,6 +36,12 @@ app.use(session({
 // global middleware
 app.use((req, res, next) => {
 
+    // set session variables (available from any middlewares through req.session)
+    // format object for basic functions
+    res.locals.format = format;
+    // testing function access control
+    res.locals.access = access;
+    // move to next middleware
     next();
 
 });

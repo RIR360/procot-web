@@ -32,16 +32,16 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
 </head>
+
 <body class=
 "min-h-screen mx-auto bg-slate-100 text-slate-600 
-dark:text-slate-100 dark:bg-slate-900">
+dark:text-slate-100 dark:bg-gray-900">
 
     <%- include("components/navbar") %>
 
     <main role="main" class=
-    "container grid gap-4 mx-auto p-4">
+    "container grid gap-4 place-items-center mx-auto p-4">
         <!-- |||||||||||||| -->
         <%- body %>
         <!-- |||||||||||||| -->
@@ -50,9 +50,8 @@ dark:text-slate-100 dark:bg-slate-900">
     <%- include("components/toast") %>
     <%- include("components/footer") %>
 
-
     <!-- Others -->
     <script src="/scripts/fontawesome.all.min.js"></script>
-    <script src="/scripts/script.js"></script>
+    <script src="/scripts/global.js"></script>
 </body>
 </html>
