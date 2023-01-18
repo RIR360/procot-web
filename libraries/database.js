@@ -18,6 +18,7 @@ function connectDatabase(error) {
     .catch(err => {
 
         error(err)
+        
     });
 
 }

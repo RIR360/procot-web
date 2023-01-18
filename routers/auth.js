@@ -81,64 +81,109 @@ app.get("/register", (req, res, next) => {
 
 app.post("/register", async (req, res, next) => {
 
-    // try catching error here
+    try {
 
-    var fname = sanitize(req.body.fname);
-    var email = sanitize(req.body.email);
-    var date = new Date().toString();
-    var password = req.body.password;
-    var confirm = req.body.confirm;
+    let fname = sanitize(req.body.fname);
+    let email = sanitize(req.body.email);
+    let date = new Date().toString();
+    let password = req.body.password;
+    let confirm = req.body.confirm;
     
     if (req.body.email != email) {
+
         // send error to the user
         req.flash("error", "You can't use those characters in your username!");
         // go back to the previous page
         return res.redirect("back");
+
     }
 
     if (!fname || !email || !password || !confirm) {
+
         // send error to the user
         req.flash("error", "Something is not defined as expected!");
         // go back to the previous page
         return res.redirect("back");
+
     }
     else if (fname.length > 100) {
+
         // send error to the user
         req.flash("error", "Fullname length exceeded!");
         // go back to the previous page
         return res.redirect("back");
+
     }
     else if (!email.includes('@')) {
+
         // send error to the user
         req.flash("error", "Email is not valid!");
         // go back to the previous page
         return res.redirect("back");
+
     }
     else if (email.length > 100) {
+
         // send error to the user
         req.flash("error", "Email length exceeded!");
         // go back to the previous page
         return res.redirect("back");
+
     }
     else if (password.length > 255) {
+
         // send error to the user
         req.flash("error", "Password length exceeded!");
         // go back to the previous page
         return res.redirect("back");
+
     }
     else if (password != confirm) {
+
         // send error to the user
         req.flash("error", "Password didn't match!");
         // go back to the previous page
         return res.redirect("back");
+
     }
     else {
 
         // hash encrypt the password
         const encrypted_pass = await bcrypt.hash(password, 9);
 
-        // push data into database and return to login
+        // push data into database
+        getDbConnection(configuration.db_url)
+        .then(database => {
+            
+            database.collection("users").insertOne({
+                fname: fname,
+                email: email,
+                role_id: userRoleId,
+                hash: encrypted_pass,
+                created: date,
+                created_by: "EITIx"
+            })
+            .then(results => {
+    
+                // set admin has been already created
+                setAdmin(true);
+                // redirect to 
+                req.flash("info", "EITIx Admin Account is created!");
+                res.redirect("/auth/login"); 
+    
+            })
+            .catch(err => {
+    
+                // error while inserting 
+                next(err)
+    
+            });
+        })
         
+    }} catch (err) {
+
+        // internal server error
+        next(err)
     }
 
 });
